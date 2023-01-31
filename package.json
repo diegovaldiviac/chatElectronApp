@@ -2,9 +2,10 @@
   "name": "electron-chat-app",
   "version": "1.0.0",
   "description": "full stack project",
-  "main": "main.js",
+  "main": "main.ts",
   "scripts": {
     "start": "electron .",
+    "watch": "webpack --config webpack.common.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,23 @@
   "bugs": {
     "url": "https://github.com/diegovaldiviac/message-chat-app/issues"
   },
-  "homepage": "https://github.com/diegovaldiviac/message-chat-app#readme"
+  "homepage": "https://github.com/diegovaldiviac/message-chat-app#readme",
+  "dependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
+    "electron": "^22.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.12",
+    "typescript": "^4.9.5"
+  }
 }

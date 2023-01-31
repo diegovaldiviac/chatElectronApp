@@ -9,10 +9,14 @@ function createWindow() {
     backgroundColor: "white",
     webPreferences: {
       nodeIntegration: true,
+      // feature that ensures that both, your preload scripts and Electrons
+      // internal logic run in seperate context.
+      contextIsolation: true,
+      worldSafeExecuteJavaScript: true,
     },
   });
   window.loadFile("index.html");
-  //window.webContents.openDevTools()
+  window.webContents.openDevTools();
 }
 
 app.whenReady().then(createWindow);
@@ -37,3 +41,5 @@ app.on("activate", () => {
 // Chromium: Web engine for rendering the UI
 // V8 Engine: provides capibilities to execute JS Code inside browser enviroment
 // Node JS: built on V8 Engine, runs JS + more features
+
+// Babel: Compiler for high level of javascript
