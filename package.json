@@ -1,0 +1,20 @@
+{
+  "name": "electron-chat-app",
+  "version": "1.0.0",
+  "description": "full stack project",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegovaldiviac/message-chat-app.git"
+  },
+  "author": "diego valdivia cox",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diegovaldiviac/message-chat-app/issues"
+  },
+  "homepage": "https://github.com/diegovaldiviac/message-chat-app#readme"
+}
