@@ -1,31 +1,30 @@
 const path = require("path");
 
 module.exports = {
-  mode: "development",
   entry: "./src/index.tsx",
+  mode: process.env.NODE_ENV || "development",
   devtool: "inline-source-map",
   target: "electron-renderer",
+  devServer: {
+    static: {       
+      directory: path.resolve(__dirname, './dist')
+    }
+  },
   module: {
     rules: [
       {
-        test: /\.(js|jsx|tsx|ts)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: [
-              [
-                "@babel/preset-env",
-                {
-                  targets: {
-                    esmodules: true,
-                  },
-                },
-              ],
-              "@babel/preset-react",
-            ],
-          },
-        },
+        use: ["babel-loader"],
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        use: ["ts-loader"],
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
+        use: ["file-loader"],
       },
       {
         test: [/\.s[ac]ss$/i, /\.css$/i],
@@ -40,9 +39,13 @@ module.exports = {
       },
     ],
   },
-  plugins: [],
+  plugins: [
+    new HtmlWebpackPlugin({
+        template: path.join(__dirname, "src", "index.html"),
+    }),
+],
   resolve: {
-    extensions: [".tsx"],
+    extensions: [".tsx", ".js", ".ts", ".jsx", ""],
   },
   output: {
     filename: "app.ts",
