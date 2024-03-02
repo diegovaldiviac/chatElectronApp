@@ -8,11 +8,11 @@ export default function configureStore() {
     thunkMiddleware
   ];
 
-  const store = createStore(() => {
+  const store = createStore(
     combineReducers({
       chats: chatReducer
-    })
-  }, applyMiddleware(...middlewares));
+    }),
+    applyMiddleware(...middlewares));
 
   return store;
 }

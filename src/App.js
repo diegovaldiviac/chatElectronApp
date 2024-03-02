@@ -1,9 +1,8 @@
 import React from "react";
 import HomeView from "./views/Home";
-import LoginView from "./views/Login";
 import SettingsView from "./views/Settings";
-import RegisterView from "./views/Register";
 import ChatView from "./views/Chat"
+import WelcomeView from "./views/Welcome";
 import NavBar from "./components/NavBar";
 import {Provider} from "react-redux"
 import {
@@ -13,6 +12,7 @@ import {
 } from "react-router-dom"
 
 import configureStore from "./store";
+
 
 const store = configureStore()
 
@@ -24,16 +24,13 @@ export default function App() {
         <div className='content-wrapper'>
           <Switch>
           <Route path="/" exact>
-              <HomeView />
+              <WelcomeView />
             </Route>
             <Route path="/settings">
               <SettingsView/>
             </Route>
-            <Route path="/login">
-              <LoginView/>
-            </Route>
-            <Route path="/register">
-              <RegisterView/>
+            <Route path="/home">
+              <HomeView/>
             </Route>
             <Route>
               <ChatView path="/chat"/>
