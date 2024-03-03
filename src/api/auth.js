@@ -11,12 +11,23 @@ const createUserProfile = userProfile =>
 
 
 export async function register({email, password, username, avatar}) {
-    try {
-        console.log(email, password ,username, avatar);
-        const {user} = await firebase.auth().createUserWithEmailAndPassword(email, password);
-        await createUserProfile({uid: user.uid, username, email, avatar, joinedChats: []})
-    } catch (error) {
-        console.log("I AM HERE")
-        return Promise.reject(error.message);
-    }
+
+    const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password);
+    await createUserProfile({uid: user.uid, username, password, email, avatar, joinedChats: []})
 }
+
+export const onAuthStateChanges = onAuth =>
+    firebase.auth().onAuthStateChanged(onAuth);
+
+export const getUserProfile = uid => {
+    db
+        .collection('profiles')
+        .doc(uid)
+        .get()
+        .then(snapshot => snapshot.data())
+}
+
+export const logout = () => firebase.auth().signOut();
+
+export const login = ({email, password}) => 
+    firebase.auth().signInWithEmailAndPassword(email, password);

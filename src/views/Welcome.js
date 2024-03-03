@@ -2,14 +2,22 @@ import React, {useState} from "react";
 
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
+import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+
 
 export default function WelcomeView() {
     const [isLoginView, setIsLogin] = useState(true);
+    const user = useSelector(({auth}) => auth.user);
 
     const optInText = isLoginView ?
         ['Need an Account?', ' Register'] :
         ['Already Registered?', ' Login']
 
+
+    if (user) {
+        return <Redirect to="/home"/>
+    }
 
     return (
         <div className="centered-view">
