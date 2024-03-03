@@ -1,12 +1,22 @@
 import firebase from "firebase/app";
 import 'firebase/auth';
+import db from "../db/firestore"
 
-export async function register({email, password}) {
+
+const createUserProfile = userProfile =>
+  db
+    .collection('profiles')
+    .doc(userProfile.uid)
+    .set(userProfile)
+
+
+export async function register({email, password, username, avatar}) {
     try {
-        console.log(email, password);
+        console.log(email, password ,username, avatar);
         const {user} = await firebase.auth().createUserWithEmailAndPassword(email, password);
-        return user;
+        await createUserProfile({uid: user.uid, username, email, avatar, joinedChats: []})
     } catch (error) {
+        console.log("I AM HERE")
         return Promise.reject(error.message);
     }
 }
